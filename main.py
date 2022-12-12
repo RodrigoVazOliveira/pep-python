@@ -1,4 +1,6 @@
 from account_current import CurrentAccount
 from client import Client
 
-current_account = CurrentAccount(None, '00', '1001')
+client = Client('Rodrigo', '243242323')
+current_account = CurrentAccount(client, 100, 1001)
+print(f'Agência: {current_account.agency} e o número da conta: {current_account.number}')

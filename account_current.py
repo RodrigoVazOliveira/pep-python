@@ -3,12 +3,52 @@ class CurrentAccount:
     tax_operation = None
 
     def __init__(self, client, agency, number):
-        self.balance = 100
+        self.__balance = 100
         self.client = client
-        self.agency = agency
-        self.number = number
-        CurrentAccount.tax_operation = 30 / CurrentAccount.total_accounts_createds
+        self.__agency = agency
+        self.__number = number
         CurrentAccount.total_accounts_createds += 1
+        CurrentAccount.tax_operation = 30 / CurrentAccount.total_accounts_createds
+
+    @property
+    def agency(self):
+        return self.__agency
+
+    def __set_agency(self, value):
+        if not isinstance(value, int):
+            return
+
+        if value <= 0:
+            return
+
+        self.__agency = agency
+
+    @property
+    def number(self):
+        return self.__number
+
+    def __set_number(self, value):
+        if not isinstance(value, int):
+            return
+
+        if value <= 0:
+            return
+
+        self.__number = value
+
+    @property
+    def balance(self):
+        return self.__balance
+
+    @balance.setter
+    def balance(self, value):
+        if not isinstance(value, int):
+            return
+
+        if value <= 0:
+            return
+
+        self.__balance = value
 
     def transfer(self, value, favored):
         favored.deposit(value)
