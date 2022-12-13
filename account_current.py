@@ -5,10 +5,13 @@ class CurrentAccount:
     def __init__(self, client, agency, number):
         self.__balance = 100
         self.client = client
-        self.__agency = agency
-        self.__number = number
+        self.__agency = 0
+        self.__number = 0
         CurrentAccount.total_accounts_createds += 1
         CurrentAccount.tax_operation = 30 / CurrentAccount.total_accounts_createds
+        self.__set_agency(agency)
+        self.__set_number(number)
+
 
     @property
     def agency(self):
@@ -16,12 +19,12 @@ class CurrentAccount:
 
     def __set_agency(self, value):
         if not isinstance(value, int):
-            return
+            raise AttributeError('O valor não é um número!', value)
 
         if value <= 0:
-            return
+            return ValueError('O valor deve ser maior do que zero!')
 
-        self.__agency = agency
+        self.__agency = value
 
     @property
     def number(self):
@@ -29,10 +32,10 @@ class CurrentAccount:
 
     def __set_number(self, value):
         if not isinstance(value, int):
-            return
+            raise AttributeError('O tipo de dado não é um número!', value)
 
         if value <= 0:
-            return
+            raise ValueError('O valor deve ser maior o que zero!')
 
         self.__number = value
 
